@@ -69,9 +69,6 @@ where vac.continent is not null
 and vac.new_vaccinations is not null
 order by 1,2,3
 
-
-
-
 --Comparing Vaccination Count with Population in Iran
 select vac.continent, vac.location, vac.date, vac.population, vac.new_vaccinations, sum(cast(new_vaccinations as bigint)) over (partition by dea.location order by dea.location, dea.date)
 from CovidDeaths dea
@@ -119,10 +116,6 @@ where dea.continent is not null
 )
 select *, (TotalVaccination/population)*100 as TotalVaccinationPercentag
 from PopvsVac
-
-
-
-
 
 --Temp Table
 drop table if exists #TotalVaccinationPercentag
